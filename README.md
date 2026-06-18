@@ -43,7 +43,7 @@ already handled.
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-username/gpu-vm/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/install.sh | bash
 ```
 
 This drops `gpu-vm` into `~/.local/bin`. Make sure that's on your `PATH`.
@@ -52,7 +52,7 @@ This drops `gpu-vm` into `~/.local/bin`. Make sure that's on your `PATH`.
 <summary>Manual install</summary>
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-username/gpu-vm/main/gpu-vm.sh \
+curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/gpu-vm.sh \
   -o ~/.local/bin/gpu-vm && chmod +x ~/.local/bin/gpu-vm
 ```
 Or just clone and run `./gpu-vm.sh`.

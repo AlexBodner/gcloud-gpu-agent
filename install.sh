@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # gpu-vm installer. Downloads gpu-vm.sh to ~/.local/bin/gpu-vm and makes it executable.
 #
-#   curl -fsSL https://raw.githubusercontent.com/your-username/gpu-vm/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/install.sh | bash
 #
 set -euo pipefail
 
-REPO="${GPU_VM_REPO:-your-username/gpu-vm}"
+REPO="${GPU_VM_REPO:-AlexBodner/gpu-vm}"
 BRANCH="${GPU_VM_BRANCH:-main}"
 BIN_DIR="${GPU_VM_BIN_DIR:-$HOME/.local/bin}"
 URL="https://raw.githubusercontent.com/${REPO}/${BRANCH}/gpu-vm.sh"

@@ -5,7 +5,7 @@
 # machine and executes on the VM via `gcloud compute ssh --command`, so you (or an
 # AI agent) can drive a remote GPU and read its output without an interactive shell.
 #
-# Repo:    https://github.com/your-username/gpu-vm
+# Repo:    https://github.com/AlexBodner/gpu-vm
 # License: MIT
 #
 # One-time setup on your machine:
