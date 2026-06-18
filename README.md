@@ -1,21 +1,28 @@
 # gpu-vm
 
-**Spin up a Google Cloud GPU VM and run your code on it — in one command.**
-
-No Terraform, no Python, no SDK. Just a single ~200-line Bash script that wraps
-`gcloud`. Create an L4 / A100 / H100 box, push your repo, launch training in a
-detached session, stream the logs, pull your results, and shut it down — all from
-your terminal. Because every command returns its output to your shell, it's also
-perfect for **AI coding agents** (Claude Code, etc.) to drive a remote GPU.
+### 🔥 A cloud GPU, ready to train, in one command.
 
 ```bash
-GPU=nvidia-l4 ZONE=us-central1-a gpu-vm create     # 🚀 a 24GB GPU box
+GPU=nvidia-l4 gpu-vm create     # 🚀 a 24GB GPU box, ~90 seconds
+```
+
+```bash
 gpu-vm push ~/my-project                            # 📦 upload (private repos OK)
 gpu-vm run "cd my-project && python train.py" train # 🏃 detached job in tmux
 gpu-vm logs train.log                               # 📜 stream the logs
 gpu-vm pull my-project/outputs ./outputs            # ⬇️  bring results home
 gpu-vm stop                                         # ⏸  stop billing (disk kept)
 ```
+
+**Install:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/install.sh | bash
+```
+
+That's it. One ~200-line Bash script wrapping `gcloud` — no Terraform, no Python,
+no SDK. Every command returns the VM's output to your shell, so AI coding agents
+(Claude Code, etc.) can drive a remote GPU too.
 
 ---
 
@@ -42,11 +49,8 @@ already handled.
 
 ## Install
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/install.sh | bash
-```
-
-This drops `gpu-vm` into `~/.local/bin`. Make sure that's on your `PATH`.
+The one-liner above drops `gpu-vm` into `~/.local/bin` — make sure that's on your
+`PATH`.
 
 <details>
 <summary>Manual install</summary>
