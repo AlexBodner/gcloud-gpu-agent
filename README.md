@@ -1,25 +1,37 @@
-# gpu-vm
+# gcloud-gpu-agent
 
-### 🤖 A Claude Code skill that spins up and drives Google Cloud GPUs for you.
+### 🤖 An AI agent skill that spins up and drives Google Cloud GPUs for you.
 
 Ask your agent to *"launch an L4 and run my training"* — it creates the VM, pushes
 your repo, kicks off the job in a detached session, streams the logs, pulls your
-results, and reminds you to shut it down. Powered by one dependency-free Bash
-script wrapping `gcloud`, so it also works as a plain CLI.
+results, and reminds you to shut it down. Works with **Claude Code** and **Codex CLI**.
+Powered by one dependency-free Bash script wrapping `gcloud`, so it also works as a plain CLI.
 
-**Install the skill (Claude Code):**
+**Claude Code:**
 
 ```text
 /plugin marketplace add AlexBodner/gcloud-gpu-agent
 /plugin install gcloud-gpu-agent@alexbodner-gcloud-gpu-agent
 ```
 
-Now just talk to Claude:
+**Codex CLI:**
+
+```bash
+# 1. Install the CLI (needed so the agent can call gpu-vm commands)
+curl -fsSL https://raw.githubusercontent.com/AlexBodner/gcloud-gpu-agent/main/install.sh | bash
+
+# 2. Add the skill to your project (or ~/.codex/skills/ for global use)
+mkdir -p .codex/skills/gcloud-gpu-agent
+curl -fsSL https://raw.githubusercontent.com/AlexBodner/gcloud-gpu-agent/main/.codex/skills/gcloud-gpu-agent/SKILL.md \
+  -o .codex/skills/gcloud-gpu-agent/SKILL.md
+```
+
+Now just talk to your agent:
 
 > *"Spin up an A100, push this repo, and start `train.py` in tmux."*
 > *"Tail the training log."*  ·  *"Pull the checkpoints and stop the VM."*
 
-Claude runs the right commands under the hood and reads the output back for you.
+The agent runs the right commands under the hood and reads the output back for you.
 
 ---
 
