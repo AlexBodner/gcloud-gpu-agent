@@ -1,0 +1,12 @@
+{
+  "name": "gpu-vm",
+  "description": "Launch Google Cloud GPU VMs (L4/A100/H100) and run code on them over SSH, straight from Claude Code.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Alex Bodner"
+  },
+  "homepage": "https://github.com/AlexBodner/gpu-vm",
+  "repository": "https://github.com/AlexBodner/gpu-vm",
+  "license": "MIT",
+  "keywords": ["gpu", "gcloud", "cloud", "machine-learning", "cuda", "ssh"]
+}

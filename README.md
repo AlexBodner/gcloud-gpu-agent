@@ -1,12 +1,38 @@
 # gpu-vm
 
-### 🔥 A cloud GPU, ready to train, in one command.
+### 🤖 A Claude Code skill that spins up and drives Google Cloud GPUs for you.
+
+Ask your agent to *"launch an L4 and run my training"* — it creates the VM, pushes
+your repo, kicks off the job in a detached session, streams the logs, pulls your
+results, and reminds you to shut it down. Powered by one dependency-free Bash
+script wrapping `gcloud`, so it also works as a plain CLI.
+
+**Install the skill (Claude Code):**
+
+```text
+/plugin marketplace add AlexBodner/gpu-vm
+/plugin install gpu-vm@alexbodner-gpu-vm
+```
+
+Now just talk to Claude:
+
+> *"Spin up an A100, push this repo, and start `train.py` in tmux."*
+> *"Tail the training log."*  ·  *"Pull the checkpoints and stop the VM."*
+
+Claude runs the right commands under the hood and reads the output back for you.
+
+---
+
+## Use it as a plain CLI too
+
+The same tool works without an agent:
 
 ```bash
-GPU=nvidia-l4 gpu-vm create     # 🚀 a 24GB GPU box, ~90 seconds
+curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/install.sh | bash
 ```
 
 ```bash
+GPU=nvidia-l4 gpu-vm create                         # 🚀 a 24GB GPU box, ~90 seconds
 gpu-vm push ~/my-project                            # 📦 upload (private repos OK)
 gpu-vm run "cd my-project && python train.py" train # 🏃 detached job in tmux
 gpu-vm logs train.log                               # 📜 stream the logs
@@ -14,15 +40,7 @@ gpu-vm pull my-project/outputs ./outputs            # ⬇️  bring results home
 gpu-vm stop                                         # ⏸  stop billing (disk kept)
 ```
 
-**Install:**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/install.sh | bash
-```
-
-That's it. One ~200-line Bash script wrapping `gcloud` — no Terraform, no Python,
-no SDK. Every command returns the VM's output to your shell, so AI coding agents
-(Claude Code, etc.) can drive a remote GPU too.
+The installer drops `gpu-vm` into `~/.local/bin` — make sure that's on your `PATH`.
 
 ---
 
@@ -30,14 +48,14 @@ no SDK. Every command returns the VM's output to your shell, so AI coding agents
 
 Renting a cloud GPU for an afternoon shouldn't require learning an
 infrastructure framework. The console is clicky, raw `gcloud` is verbose, and
-notebooks die when your laptop sleeps. `gpu-vm` gives you the five verbs you
-actually use — **create, push, run, pull, stop** — with sane GPU defaults and the
-gotchas (stockouts, first-boot driver install, private-repo upload, tmux jobs)
-already handled.
+notebooks die when your laptop sleeps. `gpu-vm` gives an agent (or you) the five
+verbs that actually matter — **create, push, run, pull, stop** — with sane GPU
+defaults and the gotchas (stockouts, first-boot driver install, private-repo
+upload, tmux jobs) already handled.
 
+- 🤖 **Built for agents.** Every command runs locally and returns the VM's output —
+  no interactive shell — so Claude can run jobs and read results directly.
 - 🧩 **One file, zero deps.** Pure Bash + `gcloud`. Read it in two minutes.
-- 🤖 **Agent-friendly.** Each command runs locally and returns the VM's output —
-  no interactive shell — so an AI agent can run jobs and read results.
 - 🔒 **Private repos just work.** `push` ships `git archive HEAD` over scp; no
   GitHub credentials ever land on the VM.
 - 🧵 **Long jobs survive disconnects.** `run` launches inside tmux; `wait` blocks
@@ -47,13 +65,10 @@ already handled.
 
 ---
 
-## Install
-
-The one-liner above drops `gpu-vm` into `~/.local/bin` — make sure that's on your
-`PATH`.
+## Manual / standalone install
 
 <details>
-<summary>Manual install</summary>
+<summary>Without the installer script</summary>
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/AlexBodner/gpu-vm/main/gpu-vm.sh \
